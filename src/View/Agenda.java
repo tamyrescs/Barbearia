@@ -6,6 +6,7 @@
 package View;
 
 import Controller.AgendaController;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 
 /**
@@ -43,8 +44,8 @@ public class Agenda extends javax.swing.JFrame {
         LabelHora = new javax.swing.JLabel();
         LabelObservacao = new javax.swing.JLabel();
         TextId = new javax.swing.JTextField();
-        TextCliente = new javax.swing.JComboBox<>();
-        TextServico = new javax.swing.JComboBox<>();
+        jComboBoxCliente = new javax.swing.JComboBox<>();
+        jComboBoxServico = new javax.swing.JComboBox<>();
         TextValor = new javax.swing.JTextField();
         TextFormatedData = new javax.swing.JFormattedTextField();
         TextFormatedHora = new javax.swing.JFormattedTextField();
@@ -102,11 +103,9 @@ public class Agenda extends javax.swing.JFrame {
         });
         getContentPane().add(TextId, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 280, 40));
 
-        TextCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alan", "Afonso", "Abigail", "Alexandro" }));
-        getContentPane().add(TextCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 280, 40));
+        getContentPane().add(jComboBoxCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 280, 40));
 
-        TextServico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Barba", "Barba + Corte", "Corte", " " }));
-        getContentPane().add(TextServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 280, 40));
+        getContentPane().add(jComboBoxServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 280, 40));
 
         TextValor.setText("0");
         TextValor.setToolTipText("");
@@ -221,19 +220,22 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JLabel LabelServico;
     private javax.swing.JLabel LabelValor;
     private javax.swing.JTable TableAgendamentos;
-    private javax.swing.JComboBox<String> TextCliente;
     private javax.swing.JFormattedTextField TextFormatedData;
     private javax.swing.JFormattedTextField TextFormatedHora;
     private javax.swing.JTextField TextId;
     private javax.swing.JTextArea TextObservacao;
-    private javax.swing.JComboBox<String> TextServico;
     private javax.swing.JTextField TextValor;
+    private javax.swing.JComboBox<String> jComboBoxCliente;
+    private javax.swing.JComboBox<String> jComboBoxServico;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
     private void iniciar() {
-        controller.atualizatabela();
+        this.controller.atualizatabela();
+        this.controller.atualizaCliente();
+        this.controller.atualizaServico();
+        
     }
 
     public JTable getTableAgendamentos() {
@@ -242,6 +244,22 @@ public class Agenda extends javax.swing.JFrame {
 
     public void setTableAgendamentos(JTable TableAgendamentos) {
         this.TableAgendamentos = TableAgendamentos;
+    }
+
+    public JComboBox<String> getjComboBoxCliente() {
+        return jComboBoxCliente;
+    }
+
+    public void setjComboBoxCliente(JComboBox<String> jComboBoxCliente) {
+        this.jComboBoxCliente = jComboBoxCliente;
+    }
+
+    public JComboBox<String> getjComboBoxServico() {
+        return jComboBoxServico;
+    }
+
+    public void setjComboBoxServico(JComboBox<String> jComboBoxServico) {
+        this.jComboBoxServico = jComboBoxServico;
     }
     
     
