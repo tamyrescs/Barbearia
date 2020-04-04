@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author tamyres.carla.santos
  */
-public class AgendaHelper {
+public class AgendaHelper implements IHelper {
     
     private final Agenda view;
 
@@ -64,6 +64,9 @@ public class AgendaHelper {
         }
 
     }
+      public Cliente obterCliente() {
+            return (Cliente) view.getjComboBoxCliente().getSelectedItem();
+    }
 
     public void preencherServico(ArrayList<Servico> servicos) {
         DefaultComboBoxModel comboBoxModel  = (DefaultComboBoxModel) view.getjComboBoxServico().getModel();
@@ -85,7 +88,31 @@ public class AgendaHelper {
         view.getTextValor().setText(valor + "");
     }
 
-    
-   
-    
+    @Override
+    public Agendamento obterModelo() {
+
+        String idString = view.getTextId().getText();
+        int id = Integer.parseInt(idString);
+        Cliente cliente = obterCliente();
+        Servico servico = obterServico();
+        String valorString = view.getTextValor().getText();
+        float valor = Float.parseFloat(valorString);
+        String data = view.getTextFormatedData().getText();
+        String hora = view.getTextFormatedHora().getText();
+        String dataHora = data + " " + hora ;
+        String observacao = view.getTextObservacao().getText();   
+        
+        Agendamento agendamento = new Agendamento(id, cliente, servico, valor, dataHora, observacao);
+        return agendamento;
+        
+    }
+
+    @Override
+    public void limparTela() {
+        
+        view.getTextId().setText("");
+        view.getTextFormatedData().setText("");
+        view.getTextFormatedHora().setText("");
+        view.getTextObservacao().setText("");  
+    }
 }

@@ -29,10 +29,10 @@ public class AgendaController {
         this.helper = new AgendaHelper(view);
     }
     
-    public void atualizatabela(){
+    public void atualizaTabela(){
         //Buscar a lista de agendamentos do banco de dados
        
-        AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
+       AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
        ArrayList<Agendamento> agendamentos = agendamentoDAO.selectAll();
         
          //Exibir essa lista na view
@@ -60,4 +60,17 @@ public class AgendaController {
        Servico servico = helper.obterServico();
        helper.setarValor(servico.getValor());
     }
+    public void agendar(){
+        //Buscar objeto agendamento da tela
+        Agendamento agendamento = helper.obterModelo();
+        
+        //Salva objeto no banco de dados 
+        new AgendamentoDAO().insert(agendamento);
+        
+        //Inserir elemento na tabela 
+        atualizaTabela();
+        helper.limparTela();
+    
+    }
+
 }
